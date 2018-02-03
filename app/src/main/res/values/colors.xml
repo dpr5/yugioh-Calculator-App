@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="blue2">#0000EE</color>
+    <color name="midblue">#0000CD</color>
+
+
+    <color name="yugiohPrimary">#bc5100</color>
+    <color name="yugiohPrimaryDark">#ffb04c</color>
+    <color name="yugiohAccent">#f57f17</color>
 </resources>
