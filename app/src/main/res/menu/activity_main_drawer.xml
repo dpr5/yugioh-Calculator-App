@@ -5,13 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/millennium_eye"
-            android:title="Import" />
+            android:id="@+id/coin_toss"
+            android:icon="@drawable/puzzle"
+            android:title="Coin Toss" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/dice_roll"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Dice Roll" />
+        <!--
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
@@ -20,6 +21,8 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
+
+            -->
     </group>
 
 
