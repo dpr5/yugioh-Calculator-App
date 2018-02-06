@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/coin_toss"
+            android:icon="@drawable/puzzle"
+            android:title="Coin Toss" />
+        <item
+            android:id="@+id/dice_roll"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Dice Roll" />
+
+    </group>
+
+</menu>
