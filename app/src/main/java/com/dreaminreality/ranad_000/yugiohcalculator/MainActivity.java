@@ -1,13 +1,10 @@
 package com.dreaminreality.ranad_000.yugiohcalculator;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,7 +17,7 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class MainActivity extends AppCompatActivity
-       /* implements NavigationView.OnNavigationItemSelectedListener */{
+       /* implements NavigationView.OnNavigationItemSelectedListener */ {
     // IDs of all the numeric buttons
     private int[] numericButtons = {R.id.zerobtn, R.id.onebtn, R.id.twobtn, R.id.threebtn, R.id.fourbtn, R.id.fivebtn, R.id.sixbtn, R.id.sevenbtn, R.id.eightbtn, R.id.ninebtn};
     // IDs of all the operator buttons
@@ -39,10 +36,33 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.toolbar);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment selectedFragment = null;
+                        switch (item.getItemId()) {
+                            case R.id.coin_toss:
+                                selectedFragment = coinTossFrag.newInstance();
+                                break;
+                            case R.id.dice_roll:
+                                selectedFragment = diceRollFrag.newInstance();
+                                break;
+                        }
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_frame, selectedFragment);
+                        transaction.commit();
+                        return true;
+                    }
+                });
+
+        //Manually displaying the first fragment - one time only
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_frame, coinTossFrag.newInstance());
+        transaction.commit();
 
 
         // Find the TextView
@@ -55,7 +75,8 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
+/*============================================================================================================================*/
+//=======================================Toolbar Code=========================================================================*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -79,7 +100,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
+    /*============================================================================================================================*/
     /**
      * Find and set OnClickListener to numeric buttons.
      */
