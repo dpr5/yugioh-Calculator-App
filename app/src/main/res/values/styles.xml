@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/yugiohPrimary</item>
-        <item name="colorPrimaryDark">@color/yugiohPrimaryDark</item>
-        <item name="colorAccent">@color/yugiohAccent</item>
+        <item name="android:textSize">20sp</item>
+
+
     </style>
 
     <style name="AppTheme.NoActionBar">

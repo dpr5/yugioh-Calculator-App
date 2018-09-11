@@ -2,15 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-        <item
-            android:id="@+id/coin_toss"
-            android:icon="@drawable/puzzle"
-            android:title="Coin Toss" />
-        <item
-            android:id="@+id/dice_roll"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Dice Roll" />
-
+    <item
+        android:id="@+id/coin_toss"
+        android:icon="@drawable/coin_icon"
+        android:title="Coin Toss" />
+    <item
+        android:id="@+id/dice_roll"
+        android:icon="@drawable/dice_icon"
+        android:title="Dice Roll" />
 
 
 </menu>

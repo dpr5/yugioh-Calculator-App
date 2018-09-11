@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.dreaminreality.ranad_000.yugiohcalculator.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+
+    tools:context="com.dreaminreality.ranad_000.yugiohcalculator.MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -20,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="Your Life Points"
         android:textColor="#ffffff"
         android:textSize="25sp"
@@ -32,21 +35,20 @@
         android:id="@+id/life_points"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:textSize="25sp"
-        android:textAlignment="viewEnd"
-        android:gravity="end"
         android:layout_below="@+id/life_points_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="#ffffff"
-        />
+        android:gravity="end"
+        android:textAlignment="viewEnd"
+        android:textSize="25sp" />
 
     <LinearLayout
         android:id="@+id/calc_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/life_points"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -59,7 +61,7 @@
                 android:id="@+id/sevenbtn"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:text="7"
+                android:text="@string/_7"
                 android:textSize="20sp" />
 
             <Button
@@ -103,7 +105,7 @@
                 android:id="@+id/sixbtn"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:text="6"
+                android:text="@string/_6"
                 android:textSize="20sp" />
 
 
@@ -178,22 +180,62 @@
 
 
             <Button
+                android:id="@+id/btnAdd"
                 android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:text="+"
-                android:id="@+id/btnAdd"
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/btnSubtract"
                 android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:text="-"
-                android:id="@+id/btnSubtract"
                 android:textSize="20sp" />
 
 
         </LinearLayout>
     </LinearLayout>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_dice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/dice_zero"
+            ads:fabSize="normal"
+            android:layout_marginLeft="30dp" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_coin"
+            android:src="@drawable/coin_heads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:fabSize="normal"
+            android:layout_below="@+id/fab_dice"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp" />
+
+
+    <FrameLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        >
+
+
+    </FrameLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-9167156772258087/5078504194"></com.google.android.gms.ads.AdView>
 </RelativeLayout>

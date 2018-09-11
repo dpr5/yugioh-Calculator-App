@@ -1,23 +1,26 @@
 package com.dreaminreality.ranad_000.yugiohcalculator;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class MainActivity extends AppCompatActivity
-       /* implements NavigationView.OnNavigationItemSelectedListener */ {
+        /* implements NavigationView.OnNavigationItemSelectedListener */ {
     // IDs of all the numeric buttons
     private int[] numericButtons = {R.id.zerobtn, R.id.onebtn, R.id.twobtn, R.id.threebtn, R.id.fourbtn, R.id.fivebtn, R.id.sixbtn, R.id.sevenbtn, R.id.eightbtn, R.id.ninebtn};
     // IDs of all the operator buttons
@@ -30,40 +33,48 @@ public class MainActivity extends AppCompatActivity
     private boolean stateError;
     // If true, do not allow to add another DOT
     private boolean lastDot;
+    Button openFrag;
 
+
+    AdView mAdview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.toolbar);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener
-                (new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Fragment selectedFragment = null;
-                        switch (item.getItemId()) {
-                            case R.id.coin_toss:
-                                selectedFragment = coinTossFrag.newInstance();
-                                break;
-                            case R.id.dice_roll:
-                                selectedFragment = diceRollFrag.newInstance();
-                                break;
-                        }
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_frame, selectedFragment);
-                        transaction.commit();
-                        return true;
-                    }
-                });
+        final FloatingActionButton fab_dice = (FloatingActionButton) findViewById(R.id.fab_dice);
+        final FloatingActionButton fab_coin = (FloatingActionButton) findViewById(R.id.fab_coin);
 
-        //Manually displaying the first fragment - one time only
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_frame, coinTossFrag.newInstance());
-        transaction.commit();
+        fab_dice.setImageDrawable(getResources().getDrawable(R.drawable.dice_zero));
+        fab_dice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                diceRollFrag drf = new diceRollFrag();
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.rootLayout,drf);
+                transaction.commit();
+            }
+        });
+
+        fab_coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                coinTossFrag drf = new coinTossFrag();
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.rootLayout,drf);
+                transaction.commit();
+            }
+        });
+
+
+        MobileAds.initialize(this, "ca-app-pub-9167156772258087/5078504194");
+
+        mAdview = (AdView)findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdview.loadAd(adRequest);
 
         // Find the TextView
         this.txtScreen = (TextView) findViewById(R.id.life_points);
@@ -75,32 +86,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-/*============================================================================================================================*/
-//=======================================Toolbar Code=========================================================================*/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bottom_nav_bar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    /*============================================================================================================================*/
 
     /*============================================================================================================================*/
+
     /**
      * Find and set OnClickListener to numeric buttons.
      */
@@ -217,5 +206,11 @@ public class MainActivity extends AppCompatActivity
             };
 
 
+    public void openFragment() {
+        diceRollFrag drf = new diceRollFrag();
+        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.rootLayout,drf);
+        transaction.commit();
+    }
 }
 

@@ -2,12 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fragment_border"
     tools:context="com.dreaminreality.ranad_000.yugiohcalculator.coinTossFrag">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/fragment_border">
+
+        <Button
+            android:id="@+id/close_dice_frag_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Close" />
+
+        <ImageView
+            android:id="@+id/dice_image"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/coin_heads" />
+
+
+    </RelativeLayout>
 
 </FrameLayout>
